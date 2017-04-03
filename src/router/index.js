@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Login from '../views/Login.vue';
 import NotFound from '../views/404.vue';
 import Home from '../views/Home.vue';
+import Table from '../views/nav1/Table.vue';
 
 Vue.use(Router);
 
