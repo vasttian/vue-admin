@@ -125,15 +125,16 @@
 			showMenu(i,status) {
 				this.$refs.menuCollapsed.getElementsByClassName('submenu-hook-'+i)[0].style.display=status?'block':'none';
 			},
-			mounted() {
-				var user = sessionStorage.getItem('user');
-				if (user) {
-					user = JSON.parse(user);
-					this.sysUserName = user.name || '';
-					this.sysUserAvatar = user.avatar || '';
-				}
-			}
 		},
+		mounted() {
+			var user = sessionStorage.getItem('user');
+			// console.log("user",user);
+			if (user) {
+				user = JSON.parse(user);
+				this.sysUserName = user.name || '';
+				this.sysUserAvatar = user.avatar || '';
+			}
+		}
 	}
 </script>
 <style scoped lang="scss">
