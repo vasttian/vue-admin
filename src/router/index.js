@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Login from '../views/Login.vue';
+import NotFound from '../views/404.vue';
 
 Vue.use(Router)
 
@@ -11,12 +12,12 @@ let routes = [
         name: '',
         hidden: true
     },
-    // {
-    //     path: '/404',
-    //     component: NotFound,
-    //     name: '',
-    //     hidden: true
-    // },
+    {
+        path: '/404',
+        component: NotFound,
+        name: '',
+        hidden: true
+    },
     // //{ path: '/main', component: Main },
     // {
     //     path: '/',
