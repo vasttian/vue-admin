@@ -3,6 +3,7 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
+import store from './store';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-default/index.css'
 import Mock from './mock';
@@ -31,6 +32,7 @@ router.beforeEach((to, from, next) => {
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   template: '<App/>',
   components: { App }

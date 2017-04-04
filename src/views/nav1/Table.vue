@@ -106,7 +106,8 @@
 	</section>
 </template>
 <script>
-	import util from '../../common/js/util'
+	import util from '../../common/js/util';
+	import { mapGetters } from 'vuex';
 	//import NProgress from 'nprogress'
 	import { getUserListPage, removeUser, batchRemoveUser, editUser, addUser } from '../../api/api';
 
@@ -116,8 +117,8 @@
 				filters: {
 					name: ''
 				},
-				users: [],
-				total: 0,
+				// users: [],
+				// total: 0,
 				page: 1,
 				listLoading: false,
 
@@ -161,6 +162,16 @@
 					addr: ''
 				}
 			}
+		},
+		computed: {
+			...mapGetters([
+				'users',
+				'total',
+			]),
+			// ...mapGetters({
+			// 	users: 'users',
+			// 	total: 'total',
+			// }),
 		},
 		methods: {
 			// 性别显示转换
@@ -305,7 +316,13 @@
 			}
 		},
 		mounted() {
-			this.getUsers();
+			// this.getUsers();
+			let para = {
+				page: this.page,
+				name: this.filters.name
+			};
+			// this.$store.dispatch('getUsers', { page, name }).then(() => this.listLoading = false;);
+			this.$store.dispatch('getUsers', para).then(() => this.listLoading = false);
 		}
 	}
 </script>
