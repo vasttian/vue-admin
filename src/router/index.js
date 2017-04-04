@@ -28,7 +28,9 @@ let routes = [
     path: '/',
     component: Home,
     name: '导航一',
-    iconCls: 'el-icon-message',//图标样式class
+
+    // 图标样式class
+    iconCls: 'el-icon-message',
     children: [
       // { path: '/main', component: Main, name: '主页', hidden: true },
       { path: '/table', component: Table, name: 'Table' },
