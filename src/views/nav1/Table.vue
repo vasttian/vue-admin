@@ -190,14 +190,17 @@
 					page: this.page,
 					name: this.filters.name
 				};
-				this.listLoading = true;
-				//NProgress.start();
-				getUserListPage(para).then((res) => {
-					this.total = res.data.total;
-					this.users = res.data.users;
-					this.listLoading = false;
-					//NProgress.done();
-				});
+				// this.listLoading = true;
+				// //NProgress.start();
+				// getUserListPage(para).then((res) => {
+				// 	this.total = res.data.total;
+				// 	this.users = res.data.users;
+				// 	this.listLoading = false;
+				// 	//NProgress.done();
+				// });
+				//
+				// this.$store.dispatch('getUsers', { page, name }).then(() => this.listLoading = false;);
+				this.$store.dispatch('getUsers', para);
 			},
 
 			// 删除
@@ -317,13 +320,7 @@
 			}
 		},
 		mounted() {
-			// this.getUsers();
-			let para = {
-				page: this.page,
-				name: this.filters.name,
-			};
-			// this.$store.dispatch('getUsers', { page, name }).then(() => this.listLoading = false;);
-			this.$store.dispatch('getUsers', para);
+			this.getUsers();
 		}
 	}
 </script>
