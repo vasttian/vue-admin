@@ -1,4 +1,4 @@
-import { getUserListPage } from '../../api/api';
+import { getUserListPage, removeUser } from '../../api/api';
 import * as types from '../mutation-types';
 
 const state = {
@@ -23,13 +23,23 @@ const actions = {
 			commit(types.GET_USERS, {value});
 			state.listLoading = false;
 		});
-	}
+	},
+	removeUser({ dispatch, commit, state }, para) {
+		state.listLoading = true;
+		removeUser({ id: para.id }).then((value) => {
+			// commit(types.REMOVE_USER, {value});
+			dispatch('getUsers', para);
+		});
+	},
 };
 
 const mutations = {
-	[types.GET_USERS](state, {value}) {
+	[types.GET_USERS](state, { value }) {
 		state.userObj = value.data;
 	},
+	[types.REMOVE_USER](state, { value }) {
+		// state.userObj = value.data;
+	}
 };
 
 export default {

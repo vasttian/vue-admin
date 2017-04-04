@@ -208,18 +208,30 @@
 				this.$confirm('确认删除该记录吗?', '提示', {
 					type: 'warning'
 				}).then(() => {
-					this.listLoading = true;
+					// this.listLoading = true;
 					//NProgress.start();
-					let para = { id: row.id };
-					removeUser(para).then((res) => {
-						this.listLoading = false;
-						//NProgress.done();
+					let para = {
+						id: row.id,
+						page: this.page,
+						name: this.filters.name,
+					};
+					this.$store.dispatch('removeUser', para).then(() => {
+
+						// this is a bug,
 						this.$message({
 							message: '删除成功',
-							type: 'success'
+							type: 'success',
 						});
-						this.getUsers();
-					});
+					})
+					// removeUser(para).then((res) => {
+					// 	this.listLoading = false;
+					// 	//NProgress.done();
+					// 	this.$message({
+					// 		message: '删除成功',
+					// 		type: 'success'
+					// 	});
+					// 	this.getUsers();
+					// });
 				}).catch(() => {
 
 				});
