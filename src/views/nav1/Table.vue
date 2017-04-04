@@ -168,6 +168,7 @@
 				'users',
 				'total',
 				'listLoading',
+				'editLoading',
 			]),
 			// ...mapGetters({
 			// 	users: 'users',
@@ -260,12 +261,10 @@
 				this.$refs.editForm.validate((valid) => {
 					if (valid) {
 						this.$confirm('确认提交吗？', '提示', {}).then(() => {
-							this.editLoading = true;
 							//NProgress.start();
 							let para = Object.assign({}, this.editForm);
 							para.birth = (!para.birth || para.birth == '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
-							editUser(para).then((res) => {
-								this.editLoading = false;
+							this.$store.dispatch('editUser', para).then(() => {
 								//NProgress.done();
 								this.$message({
 									message: '提交成功',
@@ -273,7 +272,6 @@
 								});
 								this.$refs['editForm'].resetFields();
 								this.editFormVisible = false;
-								this.getUsers();
 							});
 						});
 					}
