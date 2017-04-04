@@ -34,6 +34,7 @@
 </template>
 <script>
 	import { getUserList } from '../../api/api';
+	import { mapGetters } from 'vuex';
 	//import NProgress from 'nprogress'
 	export default {
 		data() {
@@ -41,29 +42,41 @@
 				filters: {
 					name: ''
 				},
-				loading: false,
-				users: [
-				]
+				// loading: false,
+				// users: [],
 			}
+		},
+		computed: {
+			...mapGetters({
+				users: 'users',
+				loading: 'listLoading',
+			})
 		},
 		methods: {
 			//性别显示转换
 			formatSex: function (row, column) {
 				return row.sex == 1 ? '男' : row.sex == 0 ? '女' : '未知';
 			},
+
 			//获取用户列表
-			getUser: function () {
+			// getUser: function () {
+			// 	let para = {
+			// 		name: this.filters.name
+			// 	};
+			// 	this.loading = true;
+			// 	//NProgress.start();
+			// 	getUserList(para).then((res) => {
+			// 		this.users = res.data.users;
+			// 		this.loading = false;
+			// 		//NProgress.done();
+			// 	});
+			// },
+			getUser() {
 				let para = {
 					name: this.filters.name
 				};
-				this.loading = true;
-				//NProgress.start();
-				getUserList(para).then((res) => {
-					this.users = res.data.users;
-					this.loading = false;
-					//NProgress.done();
-				});
-			}
+				this.$store.dispatch('getUser', para);
+			},
 		},
 		mounted() {
 			this.getUser();
