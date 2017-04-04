@@ -1,4 +1,4 @@
-import { getUserListPage, removeUser, getUserList, editUser } from '../../api/api';
+import { getUserListPage, removeUser, getUserList, editUser, addUser } from '../../api/api';
 import * as types from '../mutation-types';
 
 const state = {
@@ -8,6 +8,7 @@ const state = {
 	},
 	listLoading: false,
 	editLoading: false,
+	addLoading: false,
 };
 
 const getters = {
@@ -15,6 +16,7 @@ const getters = {
 	total: state => state.userObj.total,
 	listLoading: state => state.listLoading,
 	editLoading: state => state.editLoading,
+	addLoading: state => state.addLoading,
 };
 
 
@@ -46,7 +48,14 @@ const actions = {
 			dispatch('getUsers', para.all);
 			state.editLoading = false;
 		});
-	}
+	},
+	addUser({ dispatch, commit, state }, para) {
+		state.addLoading = true;
+		addUser(para).then((value) => {
+			dispatch('getUsers', para.all);
+			state.addLoading = false;
+		});
+	},
 };
 
 const mutations = {

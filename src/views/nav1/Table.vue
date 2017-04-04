@@ -109,7 +109,7 @@
 	import util from '../../common/js/util';
 	import { mapGetters } from 'vuex';
 	//import NProgress from 'nprogress'
-	import { batchRemoveUser, addUser } from '../../api/api';
+	import { batchRemoveUser } from '../../api/api';
 
 	export default {
 		data() {
@@ -146,7 +146,7 @@
 
 				// 新增界面是否显示
 				addFormVisible: false,
-				addLoading: false,
+				// addLoading: false,
 				addFormRules: {
 					name: [
 						{ required: true, message: '请输入姓名', trigger: 'blur' }
@@ -169,6 +169,7 @@
 				'total',
 				'listLoading',
 				'editLoading',
+				'addLoading',
 			]),
 			// ...mapGetters({
 			// 	users: 'users',
@@ -273,7 +274,7 @@
 								//NProgress.done();
 								this.$message({
 									message: '提交成功',
-									type: 'success'
+									type: 'success',
 								});
 								this.$refs['editForm'].resetFields();
 								this.editFormVisible = false;
@@ -288,20 +289,22 @@
 				this.$refs.addForm.validate((valid) => {
 					if (valid) {
 						this.$confirm('确认提交吗？', '提示', {}).then(() => {
-							this.addLoading = true;
 							//NProgress.start();
-							let para = Object.assign({}, this.addForm);
+							let para = Object.assign({}, this.addForm, {
+								all: {
+									page: this.page,
+									name: this.filters.name,
+								}
+							});
 							para.birth = (!para.birth || para.birth == '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
-							addUser(para).then((res) => {
-								this.addLoading = false;
+							this.$store.dispatch('addUser', para).then(() => {
 								//NProgress.done();
 								this.$message({
 									message: '提交成功',
-									type: 'success'
+									type: 'success',
 								});
 								this.$refs['addForm'].resetFields();
 								this.addFormVisible = false;
-								this.getUsers();
 							});
 						});
 					}
