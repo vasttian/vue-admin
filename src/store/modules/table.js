@@ -6,17 +6,23 @@ const state = {
 		users: [],
 		total: 0,
 	},
+	listLoading: false,
 };
 
 const getters = {
 	users: state => state.userObj.users,
 	total: state => state.userObj.total,
+	listLoading: state => state.listLoading,
 };
 
 
 const actions = {
-	getUsers({ commit }, para) {
-		getUserListPage(para).then((value) => commit(types.GET_USERS, {value}));
+	getUsers({ commit, state }, para) {
+		state.listLoading = true;
+		getUserListPage(para).then((value) => {
+			commit(types.GET_USERS, {value});
+			state.listLoading = false;
+		});
 	}
 };
 

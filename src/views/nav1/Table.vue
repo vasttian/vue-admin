@@ -120,7 +120,7 @@
 				// users: [],
 				// total: 0,
 				page: 1,
-				listLoading: false,
+				// listLoading: false,
 
 				// 列表选中列
 				sels: [],
@@ -167,6 +167,7 @@
 			...mapGetters([
 				'users',
 				'total',
+				'listLoading',
 			]),
 			// ...mapGetters({
 			// 	users: 'users',
@@ -319,10 +320,10 @@
 			// this.getUsers();
 			let para = {
 				page: this.page,
-				name: this.filters.name
+				name: this.filters.name,
 			};
 			// this.$store.dispatch('getUsers', { page, name }).then(() => this.listLoading = false;);
-			this.$store.dispatch('getUsers', para).then(() => this.listLoading = false);
+			this.$store.dispatch('getUsers', para);
 		}
 	}
 </script>
