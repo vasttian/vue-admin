@@ -109,13 +109,12 @@
 	import util from '../../common/js/util';
 	import { mapGetters } from 'vuex';
 	//import NProgress from 'nprogress'
-	import { batchRemoveUser } from '../../api/api';
 
 	export default {
 		data() {
 			return {
 				filters: {
-					name: ''
+					name: '',
 				},
 				// users: [],
 				// total: 0,
@@ -141,7 +140,7 @@
 					sex: -1,
 					age: 0,
 					birth: '',
-					addr: ''
+					addr: '',
 				},
 
 				// 新增界面是否显示
@@ -159,7 +158,7 @@
 					sex: -1,
 					age: 0,
 					birth: '',
-					addr: ''
+					addr: '',
 				}
 			}
 		},
@@ -190,7 +189,7 @@
 			getUsers() {
 				let para = {
 					page: this.page,
-					name: this.filters.name
+					name: this.filters.name,
 				};
 				// this.listLoading = true;
 				// //NProgress.start();
@@ -253,7 +252,7 @@
 					sex: -1,
 					age: 0,
 					birth: '',
-					addr: ''
+					addr: '',
 				};
 			},
 
@@ -267,7 +266,7 @@
 								all: {
 									page: this.page,
 									name: this.filters.name,
-								}
+								},
 							});
 							para.birth = (!para.birth || para.birth == '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
 							this.$store.dispatch('editUser', para).then(() => {
@@ -294,7 +293,7 @@
 								all: {
 									page: this.page,
 									name: this.filters.name,
-								}
+								},
 							});
 							para.birth = (!para.birth || para.birth == '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
 							this.$store.dispatch('addUser', para).then(() => {
@@ -318,19 +317,21 @@
 			batchRemove: function () {
 				var ids = this.sels.map(item => item.id).toString();
 				this.$confirm('确认删除选中记录吗？', '提示', {
-					type: 'warning'
+					type: 'warning',
 				}).then(() => {
-					this.listLoading = true;
 					//NProgress.start();
-					let para = { ids: ids };
-					batchRemoveUser(para).then((res) => {
-						this.listLoading = false;
+					let para = Object.assign({}, { ids: ids }, {
+						all: {
+							page: this.page,
+							name: this.filters.name,
+						},
+					});
+					this.$store.dispatch('batchRemoveUser', para).then((res) => {
 						//NProgress.done();
 						this.$message({
 							message: '删除成功',
-							type: 'success'
+							type: 'success',
 						});
-						this.getUsers();
 					});
 				}).catch(() => {
 

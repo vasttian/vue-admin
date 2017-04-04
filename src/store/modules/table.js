@@ -1,4 +1,4 @@
-import { getUserListPage, removeUser, getUserList, editUser, addUser } from '../../api/api';
+import { getUserListPage, removeUser, getUserList, editUser, addUser, batchRemoveUser } from '../../api/api';
 import * as types from '../mutation-types';
 
 const state = {
@@ -54,6 +54,13 @@ const actions = {
 		addUser(para).then((value) => {
 			dispatch('getUsers', para.all);
 			state.addLoading = false;
+		});
+	},
+	batchRemoveUser({ dispatch, commit, state }, para) {
+		state.listLoading = true;
+		batchRemoveUser(para).then((value) => {
+			dispatch('getUsers', para.all);
+			state.listLoading = false;
 		});
 	},
 };
