@@ -40,10 +40,10 @@ const actions = {
 			state.listLoading = false;
 		});
 	},
-	editUser({ commit, state }, para) {
+	editUser({ dispatch, commit, state }, para) {
 		state.editLoading = true;
 		editUser(para).then((value) => {
-			dispatch('getUsers', para);
+			dispatch('getUsers', para.all);
 			state.editLoading = false;
 		});
 	}

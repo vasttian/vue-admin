@@ -109,7 +109,7 @@
 	import util from '../../common/js/util';
 	import { mapGetters } from 'vuex';
 	//import NProgress from 'nprogress'
-	import { getUserListPage, removeUser, batchRemoveUser, editUser, addUser } from '../../api/api';
+	import { batchRemoveUser, addUser } from '../../api/api';
 
 	export default {
 		data() {
@@ -127,7 +127,7 @@
 
 				// 编辑界面是否显示
 				editFormVisible: false,
-				editLoading: false,
+				// editLoading: false,
 				editFormRules: {
 					name: [
 						{ required: true, message: '请输入姓名', trigger: 'blur' }
@@ -262,7 +262,12 @@
 					if (valid) {
 						this.$confirm('确认提交吗？', '提示', {}).then(() => {
 							//NProgress.start();
-							let para = Object.assign({}, this.editForm);
+							let para = Object.assign({}, this.editForm, {
+								all: {
+									page: this.page,
+									name: this.filters.name,
+								}
+							});
 							para.birth = (!para.birth || para.birth == '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
 							this.$store.dispatch('editUser', para).then(() => {
 								//NProgress.done();
