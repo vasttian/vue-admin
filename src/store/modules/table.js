@@ -1,5 +1,6 @@
 import { getUserListPage, removeUser, getUserList, editUser, addUser, batchRemoveUser } from '../../api/api';
 import * as types from '../mutation-types';
+import { Message } from 'element-ui';
 
 const state = {
 	userObj: {
@@ -32,6 +33,9 @@ const actions = {
 		state.listLoading = true;
 		removeUser({ id: para.id }).then((value) => {
 			// commit(types.REMOVE_USER, {value});
+			Message.success({
+				message: '删除成功',
+			});
 			dispatch('getUsers', para);
 		});
 	},
@@ -45,6 +49,9 @@ const actions = {
 	editUser({ dispatch, commit, state }, para) {
 		state.editLoading = true;
 		editUser(para).then((value) => {
+			Message.success({
+				message: '提交成功',
+			});
 			dispatch('getUsers', para.all);
 			state.editLoading = false;
 		});
@@ -52,6 +59,9 @@ const actions = {
 	addUser({ dispatch, commit, state }, para) {
 		state.addLoading = true;
 		addUser(para).then((value) => {
+			Message.success({
+				message: '提交成功',
+			});
 			dispatch('getUsers', para.all);
 			state.addLoading = false;
 		});
@@ -59,6 +69,9 @@ const actions = {
 	batchRemoveUser({ dispatch, commit, state }, para) {
 		state.listLoading = true;
 		batchRemoveUser(para).then((value) => {
+			Message.success({
+				message: '删除成功',
+			});
 			dispatch('getUsers', para.all);
 			state.listLoading = false;
 		});
