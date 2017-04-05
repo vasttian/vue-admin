@@ -33,9 +33,9 @@ let routes = [
     iconCls: 'el-icon-message',
     children: [
       // { path: '/main', component: Main, name: '主页', hidden: true },
-      { path: '/table', component: Table, name: 'Table' },
-      { path: '/form', component: Form, name: 'Form' },
-      { path: '/user', component: User, name: '列表' },
+      { path: 'table', component: Table, name: 'Table' },
+      { path: 'form', component: Form, name: 'Form' },
+      { path: 'user', component: User, name: '列表' },
     ],
   },
   // {
@@ -64,14 +64,14 @@ let routes = [
     name: 'Charts',
     iconCls: 'fa fa-bar-chart',
     children: [
-      { path: '/echarts', component: Echarts, name: 'echarts' }
+      { path: 'echarts', component: Echarts, name: 'echarts' }
     ]
   },
-  // {
-  //     path: '*',
-  //     hidden: true,
-  //     redirect: { path: '/404' }
-  // }
+  {
+      path: '*',
+      hidden: true,
+      redirect: { path: '/404' }
+  }
 ];
 
 export default new Router({
