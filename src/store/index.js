@@ -9,6 +9,7 @@ const state = {
 };
 
 export default new Vuex.Store({
+	// mode: 'history',
 	modules: {
 		table,
 	},

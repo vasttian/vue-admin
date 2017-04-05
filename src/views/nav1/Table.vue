@@ -163,8 +163,14 @@
 			}
 		},
 		computed: {
+			users() {
+				if (!this.$store.getters.users.length) {
+					return this.getUsers();
+				}
+				return this.$store.getters.users;
+			},
 			...mapGetters([
-				'users',
+				// 'users',
 				'total',
 				'listLoading',
 				'editLoading',
@@ -320,7 +326,7 @@
 			}
 		},
 		mounted() {
-			this.getUsers();
+			// this.getUsers();
 		}
 	}
 </script>

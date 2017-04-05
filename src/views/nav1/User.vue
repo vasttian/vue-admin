@@ -47,8 +47,13 @@
 			}
 		},
 		computed: {
+			users() {
+				if (!this.$store.getters.users.length) {
+					return this.getUser();
+				}
+				return this.$store.getters.users;
+			},
 			...mapGetters({
-				users: 'users',
 				loading: 'listLoading',
 			})
 		},
@@ -79,7 +84,7 @@
 			},
 		},
 		mounted() {
-			this.getUser();
+			// this.getUser();
 		}
 	};
 
