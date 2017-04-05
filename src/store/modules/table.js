@@ -1,7 +1,10 @@
 import { getUserListPage, removeUser, getUserList, editUser, addUser, batchRemoveUser } from '../../api/api';
 import * as types from '../mutation-types';
+
+// TODO: Should not deal with view state in Vuex;
 import { Message } from 'element-ui';
 
+// This is just as an Vuex example;
 const state = {
 	userObj: {
 		users: [],

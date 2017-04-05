@@ -36,6 +36,7 @@
     },
     mounted() {
       var _this = this;
+
       //基于准备好的dom，初始化echarts实例
       this.chartColumn = echarts.init(document.getElementById('chartColumn'));
       this.chartBar = echarts.init(document.getElementById('chartBar'));
