@@ -2,7 +2,7 @@ import { getUserListPage, removeUser, getUserList, editUser, addUser, batchRemov
 import * as types from '../mutation-types';
 
 // TODO: Should not deal with view state in Vuex;
-import { Message } from 'element-ui';
+// import { Message } from 'element-ui';
 
 // This is just as an Vuex example;
 const state = {
@@ -36,8 +36,11 @@ const actions = {
 		state.listLoading = true;
 		removeUser({ id: para.id }).then((value) => {
 			// commit(types.REMOVE_USER, {value});
-			Message.success({
+			// console.log("this:",para.this);
+			const _this = para.this;
+			_this.$message({
 				message: '删除成功',
+				type: 'success'
 			});
 			dispatch('getUsers', para);
 		});
@@ -52,8 +55,10 @@ const actions = {
 	editUser({ dispatch, commit, state }, para) {
 		state.editLoading = true;
 		editUser(para).then((value) => {
-			Message.success({
+			const _this = para.this;
+			_this.$message({
 				message: '提交成功',
+				type: 'success'
 			});
 			dispatch('getUsers', para.all);
 			state.editLoading = false;
@@ -62,8 +67,10 @@ const actions = {
 	addUser({ dispatch, commit, state }, para) {
 		state.addLoading = true;
 		addUser(para).then((value) => {
-			Message.success({
+			const _this = para.this;
+			_this.$message({
 				message: '提交成功',
+				type: 'success'
 			});
 			dispatch('getUsers', para.all);
 			state.addLoading = false;
@@ -72,8 +79,10 @@ const actions = {
 	batchRemoveUser({ dispatch, commit, state }, para) {
 		state.listLoading = true;
 		batchRemoveUser(para).then((value) => {
-			Message.success({
+			const _this = para.this;
+			_this.$message({
 				message: '删除成功',
+				type: 'success'
 			});
 			dispatch('getUsers', para.all);
 			state.listLoading = false;

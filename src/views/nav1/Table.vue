@@ -221,6 +221,7 @@
 						id: row.id,
 						page: this.page,
 						name: this.filters.name,
+						this: this,
 					};
 					this.$store.dispatch('removeUser', para);
 					// removeUser(para).then((res) => {
@@ -261,7 +262,7 @@
 					if (valid) {
 						this.$confirm('确认提交吗？', '提示', {}).then(() => {
 							//NProgress.start();
-							let para = Object.assign({}, this.editForm, {
+							let para = Object.assign({ this: this, }, this.editForm, {
 								all: {
 									page: this.page,
 									name: this.filters.name,
@@ -284,7 +285,7 @@
 					if (valid) {
 						this.$confirm('确认提交吗？', '提示', {}).then(() => {
 							//NProgress.start();
-							let para = Object.assign({}, this.addForm, {
+							let para = Object.assign({ this: this, }, this.addForm, {
 								all: {
 									page: this.page,
 									name: this.filters.name,
@@ -311,7 +312,7 @@
 					type: 'warning',
 				}).then(() => {
 					//NProgress.start();
-					let para = Object.assign({}, { ids: ids }, {
+					let para = Object.assign({ this: this, }, { ids: ids }, {
 						all: {
 							page: this.page,
 							name: this.filters.name,
