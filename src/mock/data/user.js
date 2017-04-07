@@ -10,8 +10,8 @@ const LoginUsers = [
 ];
 
 const Users = [];
-
-for (let i = 0; i < 86; i++) {
+const USERS_LENGTH = 100;
+for (let i = 0; i < USERS_LENGTH; ++i) {
   Users.push(Mock.mock({
     id: Mock.Random.guid(),
     name: Mock.Random.cname(),

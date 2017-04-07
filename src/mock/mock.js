@@ -45,7 +45,7 @@ export default {
 
     //获取用户列表
     mock.onGet('/user/list').reply(config => {
-      let {name} = config.params;
+      let { name } = config.params;
       let mockUsers = _Users.filter(user => {
         if (name && user.name.indexOf(name) == -1) return false;
         return true;
@@ -61,7 +61,7 @@ export default {
 
     //获取用户列表（分页）
     mock.onGet('/user/listpage').reply(config => {
-      let {page, name} = config.params;
+      let { page, name } = config.params;
       let mockUsers = _Users.filter(user => {
         if (name && user.name.indexOf(name) == -1) return false;
         return true;
@@ -72,11 +72,27 @@ export default {
         setTimeout(() => {
           resolve([200, {
             total: total,
-            users: mockUsers
+            users: mockUsers,
           }]);
         }, 1000);
       });
     });
+
+    //获取用户列表(all)
+    mock.onGet('/users/list/full').reply(() => {
+      let mockUsers = _Users;
+      let total = mockUsers.length;
+
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            total: total,
+            users: mockUsers,
+          }]);
+        }, 1000);
+      });
+    });
+
 
     //删除用户
     mock.onGet('/user/remove').reply(config => {

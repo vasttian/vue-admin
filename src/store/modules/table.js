@@ -1,4 +1,4 @@
-import { getUserListPage, removeUser, getUserList, editUser, addUser, batchRemoveUser } from '../../api/api';
+import { getUserListPage, getUsersListAll, removeUser, getUserList, editUser, addUser, batchRemoveUser } from '../../api/api';
 import * as types from '../mutation-types';
 
 // TODO: Should not deal with view state in Vuex;
@@ -52,6 +52,13 @@ const actions = {
 			state.listLoading = false;
 		});
 	},
+	getUsersAll({ commit, state }) {
+		state.listLoading = true;
+		getUsersListAll().then((value) => {
+			commit(types.GET_USERS_ALL, { value });
+			state.listLoading = false;
+		});
+	},
 	editUser({ dispatch, commit, state }, para) {
 		state.editLoading = true;
 		editUser(para).then((value) => {
@@ -92,6 +99,9 @@ const actions = {
 
 const mutations = {
 	[types.GET_USERS](state, { value }) {
+		state.userObj = value.data;
+	},
+	[types.GET_USERS_ALL](state, { value }) {
 		state.userObj = value.data;
 	},
 	[types.REMOVE_USER](state, { value }) {

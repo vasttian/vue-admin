@@ -16,7 +16,7 @@
 		</el-col>
 
 		<!-- 列表 -->
-		<el-table :data="users" highlight-current-row v-loading="listLoading" @selection-change="selsChange"
+		<el-table :data="currentUsers" highlight-current-row v-loading="listLoading" @selection-change="selsChange"
 		style="width: 100%;">
 			<el-table-column type="selection" width="55">
       </el-table-column>
@@ -43,7 +43,7 @@
     <!-- 工具条 -->
 			<el-col :span="24" class="toolbar">
 				<el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">批量删除</el-button>
-				<el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="20" :total="total" style="float:right;">
+				<el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="pageSize" :total="total" style="float:right;">
 				</el-pagination>
 			</el-col>
 
@@ -119,6 +119,7 @@
 				// users: [],
 				// total: 0,
 				page: 1,
+				pageSize: 20,
 				// listLoading: false,
 
 				// 列表选中列
@@ -169,6 +170,11 @@
 			// 	}
 			// 	return this.$store.getters.users;
 			// },
+			currentUsers() {
+				const start = (this.page - 1) * this.pageSize;
+        const end = this.page * this.pageSize;
+        return this.users.slice(start, end);
+			},
 			...mapGetters([
 				'users',
 				'total',
@@ -184,7 +190,7 @@
 			},
 			handleCurrentChange(val) {
 				this.page = val;
-				this.getUsers();
+				// this.getUsers();
 			},
 
 			// 获取用户列表
@@ -203,7 +209,8 @@
 				// });
 				//
 				// this.$store.dispatch('getUsers', { page, name }).then(() => this.listLoading = false;);
-				this.$store.dispatch('getUsers', para);
+				// this.$store.dispatch('getUsers', para);
+				this.$store.dispatch('getUsersAll');
 			},
 
 			// 删除
