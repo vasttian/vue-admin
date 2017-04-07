@@ -43,7 +43,13 @@
     <!-- 工具条 -->
 			<el-col :span="24" class="toolbar">
 				<el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">批量删除</el-button>
-				<el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="pageSize" :total="total" style="float:right;">
+				<el-pagination
+					@size-change="handleSizeChange"
+					@current-change="handleCurrentChange"
+					:page-size="pageSizes"
+					:total="total"
+					layout="sizes, prev, pager, next"
+					style="float:right;">
 				</el-pagination>
 			</el-col>
 
@@ -119,7 +125,8 @@
 				// users: [],
 				// total: 0,
 				page: 1,
-				pageSize: 20,
+				pageSize: 10,
+				pageSizes: [10, 20, 30, 50],
 				// listLoading: false,
 
 				// 列表选中列
@@ -188,7 +195,16 @@
 			formatSex: function (row, column) {
 				return row.sex == 1 ? '男' : row.sex == 0 ? '女' : '未知';
 			},
+
+			// 改变页容量
+			handleSizeChange(val) {
+				console.log(`每页 ${val} 条`);
+				this.pageSize = val;
+			},
+
+			// 翻页
 			handleCurrentChange(val) {
+				console.log(`当前是 ${val} 页`);
 				this.page = val;
 				// this.getUsers();
 			},

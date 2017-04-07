@@ -36,7 +36,7 @@ const actions = {
 		state.listLoading = true;
 		removeUser({ id: para.id }).then((value) => {
 			// commit(types.REMOVE_USER, {value});
-			// console.log("this:",para.this);
+			// console.log("this:", para.this);
 			const _this = para.this;
 			_this.$message({
 				message: '删除成功',
