@@ -42,7 +42,7 @@ const actions = {
 				message: '删除成功',
 				type: 'success'
 			});
-			dispatch('getUsers', para);
+			dispatch('getUsersAll');
 		});
 	},
 	getUser({ commit, state }, para) {
@@ -67,7 +67,8 @@ const actions = {
 				message: '提交成功',
 				type: 'success'
 			});
-			dispatch('getUsers', para.all);
+			// dispatch('getUsers', para.all);
+			dispatch('getUsersAll');
 			state.editLoading = false;
 		});
 	},
@@ -76,10 +77,10 @@ const actions = {
 		addUser(para).then((value) => {
 			const _this = para.this;
 			_this.$message({
-				message: '提交成功',
+				message: '新增成功',
 				type: 'success'
 			});
-			dispatch('getUsers', para.all);
+			dispatch('getUsersAll');
 			state.addLoading = false;
 		});
 	},
@@ -91,7 +92,7 @@ const actions = {
 				message: '删除成功',
 				type: 'success'
 			});
-			dispatch('getUsers', para.all);
+			dispatch('getUsersAll');
 			state.listLoading = false;
 		});
 	},

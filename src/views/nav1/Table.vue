@@ -213,6 +213,11 @@
 				this.$store.dispatch('getUsersAll');
 			},
 
+			// 获取所有用户列表
+			getUsersAll() {
+				this.$store.dispatch('getUsersAll');
+			},
+
 			// 删除
 			handleDel: function (index, row) {
 				this.$confirm('确认删除该记录吗?', '提示', {
@@ -330,7 +335,7 @@
 			}
 		},
 		created() {
-			this.getUsers();
+			this.getUsersAll();
 		},
 		// mounted() {
 		// 	this.getUsers();
