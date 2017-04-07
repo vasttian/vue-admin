@@ -209,8 +209,7 @@
 				// });
 				//
 				// this.$store.dispatch('getUsers', { page, name }).then(() => this.listLoading = false;);
-				// this.$store.dispatch('getUsers', para);
-				this.$store.dispatch('getUsersAll');
+				this.$store.dispatch('getUsers', para);
 			},
 
 			// 获取所有用户列表
