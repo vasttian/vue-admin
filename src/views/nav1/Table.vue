@@ -44,11 +44,11 @@
 			<el-col :span="24" class="toolbar">
 				<el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">批量删除</el-button>
 				<el-pagination
+					layout="sizes, total, prev, pager, next"
 					@size-change="handleSizeChange"
 					@current-change="handleCurrentChange"
-					:page-size="pageSizes"
+					:page-sizes="pageSizes"
 					:total="total"
-					layout="sizes, prev, pager, next"
 					style="float:right;">
 				</el-pagination>
 			</el-col>
