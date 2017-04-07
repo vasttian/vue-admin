@@ -163,23 +163,19 @@
 			}
 		},
 		computed: {
-			users() {
-				if (!this.$store.getters.users.length) {
-					return this.getUsers();
-				}
-				return this.$store.getters.users;
-			},
+			// users() {
+			// 	if (!this.$store.getters.users.length) {
+			// 		return this.getUsers();
+			// 	}
+			// 	return this.$store.getters.users;
+			// },
 			...mapGetters([
-				// 'users',
+				'users',
 				'total',
 				'listLoading',
 				'editLoading',
 				'addLoading',
 			]),
-			// ...mapGetters({
-			// 	users: 'users',
-			// 	total: 'total',
-			// }),
 		},
 		methods: {
 			// 性别显示转换
@@ -326,8 +322,11 @@
 				});
 			}
 		},
-		mounted() {
-			// this.getUsers();
-		}
+		created() {
+			this.getUsers();
+		},
+		// mounted() {
+		// 	this.getUsers();
+		// }
 	}
 </script>
