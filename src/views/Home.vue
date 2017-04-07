@@ -12,7 +12,8 @@
 			<el-col :span="4" class="userinfo">
 				<el-dropdown trigger="hover">
 					<span class="el-dropdown-lick userinfo-inner">
-						<img :src="this.sysUserAvatar" /> {{sysUserName}}
+						<!-- <img :src="this.sysUserAvatar" /> {{sysUserName}} -->
+						<img src="../assets/vasttian.png" /> {{sysUserName}}
 					</span>
 					<el-dropdown-menu slot="dropdown">
 						<el-dropdown-item>我的消息</el-dropdown-item>
