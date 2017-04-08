@@ -244,9 +244,13 @@
 						id: row.id,
 						page: this.page,
 						name: this.filters.name,
-						this: this,
 					};
-					this.$store.dispatch('removeUser', para);
+					this.$store.dispatch('removeUser', para).then(() => {
+						this.$message({
+							message: '删除成功',
+							type: 'success',
+						});
+					});
 					// removeUser(para).then((res) => {
 					// 	this.listLoading = false;
 					// 	//NProgress.done();
@@ -285,7 +289,7 @@
 					if (valid) {
 						this.$confirm('确认提交吗？', '提示', {}).then(() => {
 							//NProgress.start();
-							let para = Object.assign({ this: this, }, this.editForm, {
+							let para = Object.assign({}, this.editForm, {
 								all: {
 									page: this.page,
 									name: this.filters.name,
@@ -294,6 +298,10 @@
 							para.birth = (!para.birth || para.birth == '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
 							this.$store.dispatch('editUser', para).then(() => {
 								//NProgress.done();
+								this.$message({
+									message: '提交成功',
+									type: 'success'
+								});
 								this.$refs['editForm'].resetFields();
 								this.editFormVisible = false;
 							});
@@ -308,7 +316,7 @@
 					if (valid) {
 						this.$confirm('确认提交吗？', '提示', {}).then(() => {
 							//NProgress.start();
-							let para = Object.assign({ this: this, }, this.addForm, {
+							let para = Object.assign({}, this.addForm, {
 								all: {
 									page: this.page,
 									name: this.filters.name,
@@ -317,6 +325,10 @@
 							para.birth = (!para.birth || para.birth == '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
 							this.$store.dispatch('addUser', para).then(() => {
 								//NProgress.done();
+								this.$message({
+									message: '新增成功',
+									type: 'success'
+								});
 								this.$refs['addForm'].resetFields();
 								this.addFormVisible = false;
 							});
@@ -335,7 +347,7 @@
 					type: 'warning',
 				}).then(() => {
 					//NProgress.start();
-					let para = Object.assign({ this: this, }, { ids: ids }, {
+					let para = Object.assign({}, { ids: ids }, {
 						all: {
 							page: this.page,
 							name: this.filters.name,
@@ -343,9 +355,12 @@
 					});
 					this.$store.dispatch('batchRemoveUser', para).then((res) => {
 						//NProgress.done();
+						this.$message({
+							message: '删除成功',
+							type: 'success'
+						});
 					});
 				}).catch(() => {
-
 				});
 			}
 		},

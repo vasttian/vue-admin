@@ -36,12 +36,6 @@ const actions = {
 		state.listLoading = true;
 		removeUser({ id: para.id }).then((value) => {
 			// commit(types.REMOVE_USER, {value});
-			// console.log("this:", para.this);
-			const _this = para.this;
-			_this.$message({
-				message: '删除成功',
-				type: 'success'
-			});
 			dispatch('getUsersAll');
 		});
 	},
@@ -62,11 +56,6 @@ const actions = {
 	editUser({ dispatch, commit, state }, para) {
 		state.editLoading = true;
 		editUser(para).then((value) => {
-			const _this = para.this;
-			_this.$message({
-				message: '提交成功',
-				type: 'success'
-			});
 			// dispatch('getUsers', para.all);
 			dispatch('getUsersAll');
 			state.editLoading = false;
@@ -75,11 +64,6 @@ const actions = {
 	addUser({ dispatch, commit, state }, para) {
 		state.addLoading = true;
 		addUser(para).then((value) => {
-			const _this = para.this;
-			_this.$message({
-				message: '新增成功',
-				type: 'success'
-			});
 			dispatch('getUsersAll');
 			state.addLoading = false;
 		});
@@ -87,11 +71,6 @@ const actions = {
 	batchRemoveUser({ dispatch, commit, state }, para) {
 		state.listLoading = true;
 		batchRemoveUser(para).then((value) => {
-			const _this = para.this;
-			_this.$message({
-				message: '删除成功',
-				type: 'success'
-			});
 			dispatch('getUsersAll');
 			state.listLoading = false;
 		});
