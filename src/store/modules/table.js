@@ -36,6 +36,7 @@ const actions = {
 		state.listLoading = true;
 		removeUser({ id: para.id }).then((value) => {
 			// commit(types.REMOVE_USER, {value});
+			dispatch('removeUserSuccess');
 			dispatch('getUsersAll');
 		});
 	},
@@ -56,7 +57,7 @@ const actions = {
 	editUser({ dispatch, commit, state }, para) {
 		state.editLoading = true;
 		editUser(para).then((value) => {
-			// dispatch('getUsers', para.all);
+			dispatch('editUserSuccess');
 			dispatch('getUsersAll');
 			state.editLoading = false;
 		});
@@ -64,6 +65,7 @@ const actions = {
 	addUser({ dispatch, commit, state }, para) {
 		state.addLoading = true;
 		addUser(para).then((value) => {
+			dispatch('addUserSuccess');
 			dispatch('getUsersAll');
 			state.addLoading = false;
 		});
@@ -71,6 +73,7 @@ const actions = {
 	batchRemoveUser({ dispatch, commit, state }, para) {
 		state.listLoading = true;
 		batchRemoveUser(para).then((value) => {
+			dispatch('removeUserSuccess');
 			dispatch('getUsersAll');
 			state.listLoading = false;
 		});

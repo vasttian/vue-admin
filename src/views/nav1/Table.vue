@@ -245,12 +245,7 @@
 						page: this.page,
 						name: this.filters.name,
 					};
-					this.$store.dispatch('removeUser', para).then(() => {
-						this.$message({
-							message: '删除成功',
-							type: 'success',
-						});
-					});
+					this.$store.dispatch('removeUser', para);
 					// removeUser(para).then((res) => {
 					// 	this.listLoading = false;
 					// 	//NProgress.done();
@@ -298,10 +293,6 @@
 							para.birth = (!para.birth || para.birth == '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
 							this.$store.dispatch('editUser', para).then(() => {
 								//NProgress.done();
-								this.$message({
-									message: '提交成功',
-									type: 'success'
-								});
 								this.$refs['editForm'].resetFields();
 								this.editFormVisible = false;
 							});
@@ -325,10 +316,6 @@
 							para.birth = (!para.birth || para.birth == '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
 							this.$store.dispatch('addUser', para).then(() => {
 								//NProgress.done();
-								this.$message({
-									message: '新增成功',
-									type: 'success'
-								});
 								this.$refs['addForm'].resetFields();
 								this.addFormVisible = false;
 							});
@@ -355,10 +342,6 @@
 					});
 					this.$store.dispatch('batchRemoveUser', para).then((res) => {
 						//NProgress.done();
-						this.$message({
-							message: '删除成功',
-							type: 'success'
-						});
 					});
 				}).catch(() => {
 				});
