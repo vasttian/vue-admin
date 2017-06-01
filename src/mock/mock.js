@@ -106,6 +106,7 @@ export default {
           }]);
         }, 500);
       });
+      // return Promise.reject('shanchushibaiaaaaaaaa');
     });
 
     //批量删除用户

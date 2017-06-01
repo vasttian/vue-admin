@@ -34,10 +34,14 @@ const actions = {
 	},
 	removeUser({ dispatch, commit, state }, para) {
 		state.listLoading = true;
-		removeUser({ id: para.id }).then((value) => {
+		return removeUser({ id: para.id }).then((value) => {
 			// commit(types.REMOVE_USER, {value});
-			dispatch('removeUserSuccess');
+			// dispatch('removeUserSuccess');
+			console.log('success');
 			dispatch('getUsersAll');
+		}, (res) => {
+			console.log('failure');
+			return Promise.reject(res);
 		});
 	},
 	getUser({ commit, state }, para) {

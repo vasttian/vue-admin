@@ -245,7 +245,19 @@
 						page: this.page,
 						name: this.filters.name,
 					};
-					this.$store.dispatch('removeUser', para);
+					this.$store.dispatch('removeUser', para).then(() => {
+						console.log('dispatch');
+						this.$message({
+							message: '删除成功',
+							type: 'success',
+						});
+					}).catch((res) => {
+						console.error('fff>>>>', res);
+						this.$message({
+							message: '删除失败了哦!',
+							type: 'error',
+						});
+					});
 					// removeUser(para).then((res) => {
 					// 	this.listLoading = false;
 					// 	//NProgress.done();
