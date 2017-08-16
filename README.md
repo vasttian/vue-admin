@@ -1,6 +1,7 @@
 # vue-admin
 
 > A Vue.js project
+> Demo: http://67.218.155.2:8080/
 
 ## Build Setup
 
