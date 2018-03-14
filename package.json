@@ -9,14 +9,14 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "axios": "^0.16.0",
-    "echarts": "^3.5.1",
-    "element-ui": "^1.2.7",
-    "font-awesome": "^4.7.0",
-    "nprogress": "^0.2.0",
-    "vue": "^2.2.2",
-    "vue-router": "^2.2.0",
-    "vuex": "^2.2.1"
+    "axios": "0.16.0",
+    "echarts": "3.5.1",
+    "element-ui": "1.2.7",
+    "font-awesome": "4.7.0",
+    "nprogress": "0.2.0",
+    "vue": "2.2.2",
+    "vue-router": "2.2.0",
+    "vuex": "2.2.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
