@@ -21,3 +21,7 @@ npm run build --report
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/caarlos0/starcharts.svg)](https://starchart.cc/caarlos0/starcharts)
